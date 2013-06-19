@@ -18,6 +18,12 @@ function onDeviceReady() {
 navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
     destinationType: Camera.DestinationType.FILE_URI }); 
 
+ var popover = new CameraPopoverOptions(300,300,100,100,Camera.PopoverArrowDirection.ARROW_ANY);
+ var options = { quality: 50, destinationType: Camera.DestinationType.DATA_URL,sourceType: Camera.PictureSource.SAVEDPHOTOALBUM, popoverOptions : popover };
+
+ navigator.camera.getPicture(onSuccess, onFail, options);
+
+
 function onSuccess(imageURI) {
     var image = document.getElementById('DCIM');
     image.src = imageURI;
