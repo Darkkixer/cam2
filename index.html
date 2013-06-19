@@ -1,101 +1,41 @@
- <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-                          "http://www.w3.org/TR/html4/strict.dtd">
-    <html>
-      <head>
-        <title>Ejemplo de Media</title>
 
-        <script type="text/javascript" charset="utf-8" src="phonegap-1.0.0.js"></script>
-        <script type="text/javascript" charset="utf-8">
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-type" content="text/html;
+charset=utf-8">
+<meta name="viewport" id="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=no;" />
+<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 
-        // Espere a que PhoneGap se inicie
-        //
-        document.addEventListener("deviceready", onDeviceReady, false);
+<script type="text/javascript" charset="utf-8">
 
-        // PhoneGap esta listo
-        //
-        function onDeviceReady() {
-            playAudio("file:///sdcard/MUSICA/ING 2/Skin - Nothing But.mp3");
-        }
+function onBodyLoad() {
+document.addEventListener("deviceready",onDeviceReady,
+false);
+}
+function onDeviceReady() {
+    
+navigator.notification.alert("PhoneGap is ready!");
 
-        // Un Reproductor de audio
-        //
-        var my_media = null;
-        var mediaTimer = null;
+function playAudio(src) {
+if (device.platform == 'Android') {
+src = '/android_asset/www/' + src;
+}
+ 
+var media = new Media(src, success, error_error);
+ 
+media.play();
+}
+ 
+function success() {
+// ignore
+}
+ 
 
-        // Reproduce el audio
-        //
-        function playAudio(src) {
-            if (my_media == null) {
-                // Crea un objeto `Media` desde el argumento
-                my_media = new Media(src, onSuccess, onError);
-            } // Si no, reproduce el actual
-            // Play audio
-            my_media.play();
+}
+</script>
 
-            // Actualiza la posición cada segundo
-            if (mediaTimer == null) {
-                mediaTimer = setInterval(function() {
-                    // Obtiene la posición actual
-                    my_media.getCurrentPosition(
-                        // Función 'callback' satisfactoria
-                        function(position) {
-                            if (position > -1) {
-                                setAudioPosition((position) + " seg");
-                            }
-                        },
-                        // Función 'callback' de error
-                        function(e) {
-                            console.log("Error obteniendo posición=" + e);
-                            setAudioPosition("Error: " + e);
-                        }
-                    );
-                }, 1000);
-            }
-        }
-
-        // Pausa la reproducción
-        // 
-        function pauseAudio() {
-            if (my_media) {
-                my_media.pause();
-            }
-        }
-
-        // Detiene la reproducción
-        // 
-        function stopAudio() {
-            if (my_media) {
-                my_media.stop();
-            }
-            clearInterval(mediaTimer);
-            mediaTimer = null;
-        }
-
-        // Función 'callback' onSuccess
-        //
-        function onSuccess() {
-            console.log("playAudio():Audio Correcto");
-        }
-
-        // Función 'callback' onError
-        //
-        function onError(error) {
-            alert('código: '  + error.code    + '\n' + 
-                  'mensaje: ' + error.message + '\n');
-        }
-
-        // Muestra la posición
-        // 
-        function setAudioPosition(position) {
-            document.getElementById('audio_position').innerHTML = position;
-        }
-
-        </script>
-      </head>
-      <body>
-        <a href="#" class="btn large" onclick="playAudio("file:///sdcard/MUSICA/ING 2/Skin - Nothing But.mp3");">Reproducir</a>
-        <a href="#" class="btn large" onclick="pauseAudio();">Pausa</a>
-        <a href="#" class="btn large" onclick="stopAudio();">Detener</a>
-        <p id="audio_position"></p>
-      </body>
-    </html>
+</head>
+<body onload="onBodyLoad()">
+ <button onclick="playAudio('Memento Mori.mp3')">Play Some Audio</button>
+</html>
