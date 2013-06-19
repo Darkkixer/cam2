@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,7 +14,7 @@ false);
 }
 function onDeviceReady() {
     
-navigator.notification.alert("Camara lista");
+
 navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
     destinationType: Camera.DestinationType.FILE_URI }); 
 
@@ -37,8 +36,6 @@ function onFail(message) {
 
 </head>
 <body onload="onBodyLoad()">
-<h1>HelloWorld2</h1>
-<p>This is a sample PhoneGap application.</p>
 
 </body>
 </html>
