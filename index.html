@@ -17,16 +17,15 @@ function onDeviceReady() {
 navigator.notification.alert("Puedes usar la camaara");
 navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
     destinationType: Camera.DestinationType.FILE_URI }); 
-navigator.camera.getPicture( cameraSuccess, cameraError, [ cameraOptions ] );
+
 
 { quality:75, 
-  destinationType:Camera.DestinationType.DATA_URL, 
+  destinationType:Camera.DestinationType. FILE_URI, 
   sourceType:Camera.PictureSourceType.CAMERA, 
   allowEdit:true,
   encodingType:Camera.EncodingType.JPEG,
   targetWidth:100,
   targetHeight:100,
-  popoverOptions:CameraPopoverOptions,
   saveToPhotoAlbum:true };
 
 }
@@ -35,8 +34,9 @@ function onSuccess(imageURI) {
     var image=document.getElementById('DCIM');
     image.src=imageURI;
 }  
+
 function cameraCallback(imageData) {
-    var image = document.getElementById('myImage');
+    var image = document.getElementById('DCIM');
     image.src = "data:image/jpeg;base64," + imageData;
 }
 
@@ -50,7 +50,7 @@ function onFail(message) {
 </head>
 <body onload="onBodyLoad()">
 <button onclick="capturePhoto();">Capture Photo</button> <br>
-        <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
+<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
 
 
 </body>
