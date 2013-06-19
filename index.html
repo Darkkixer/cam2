@@ -34,7 +34,7 @@ navigator.camera.getPicture( cameraSuccess, cameraError, [ cameraOptions ] );
 function onSuccess(imageURI) {
     var image=document.getElementById('DCIM');
     image.src=imageURI;
-    
+}  
 function cameraCallback(imageData) {
     var image = document.getElementById('myImage');
     image.src = "data:image/jpeg;base64," + imageData;
@@ -44,11 +44,13 @@ function cameraCallback(imageData) {
 function onFail(message) {
     alert('Failed because: ' + message);
 }
-}
+
 </script>
 
 </head>
 <body onload="onBodyLoad()">
+<button onclick="capturePhoto();">Capture Photo</button> <br>
+        <button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
 
 
 </body>
