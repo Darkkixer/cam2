@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,28 +15,15 @@ false);
 }
 function onDeviceReady() {
     
-navigator.notification.alert("Puedes usar la camaara");
+navigator.notification.alert("Camara lista");
 navigator.camera.getPicture(onSuccess, onFail, { quality: 50, 
     destinationType: Camera.DestinationType.FILE_URI }); 
 
-
-{ quality:75, 
-  destinationType:Camera.DestinationType. FILE_URI, 
-  sourceType:Camera.PictureSourceType.CAMERA, 
-  allowEdit:true,
-  encodingType:Camera.EncodingType.JPEG,
-  targetWidth:100,
-  targetHeight:100,
-  saveToPhotoAlbum:true };
-
-}
-
 function onSuccess(imageURI) {
-    var image=document.getElementById('DCIM');
-    image.src=imageURI;
-}  
-
-function cameraCallback(imageData) {
+    var image = document.getElementById('DCIM');
+    image.src = imageURI;
+}
+function cameraCallback(imageURI) {
     var image = document.getElementById('DCIM');
     image.src = "data:image/jpeg;base64," + imageData;
 }
@@ -44,14 +32,13 @@ function cameraCallback(imageData) {
 function onFail(message) {
     alert('Failed because: ' + message);
 }
-
+}
 </script>
 
 </head>
 <body onload="onBodyLoad()">
-<button onclick="capturePhoto();">Capture Photo</button> <br>
-<button onclick="getPhoto(pictureSource.SAVEDPHOTOALBUM);">From Photo Album</button><br>
-
+<h1>HelloWorld2</h1>
+<p>This is a sample PhoneGap application.</p>
 
 </body>
 </html>
